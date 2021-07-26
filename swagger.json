@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": " App Token -  “b56a65cf7ccdce09b82588a63464bf5f53ba75accef98c71a228a577925996906793364d5cd8ea27cce9d8661923ba578259589d075e84128142fd3bc61449607d90afcaa532a8467bfc47239c9713454b8b7f1d7cde765f946cf9ab32dc1f” ",
+    "description": " This document provides the API configurations to set up and integrate with Onepay Payment Gateway.",
     "version": "1.0.0",
     "title": "Onepay Payment Gateway Integration Guidelines",
     "termsOfService": "http://swagger.io/terms/",
