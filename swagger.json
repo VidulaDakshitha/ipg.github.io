@@ -1,0 +1,263 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": " App Token -  “b56a65cf7ccdce09b82588a63464bf5f53ba75accef98c71a228a577925996906793364d5cd8ea27cce9d8661923ba578259589d075e84128142fd3bc61449607d90afcaa532a8467bfc47239c9713454b8b7f1d7cde765f946cf9ab32dc1f” ",
+    "version": "1.0.0",
+    "title": "Onepay Payment Gateway Integration Guidelines",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "chamath.rathnayake@spemai.com"
+    },
+    "license": {
+      "name": "V0.1",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "Generate Transaction",
+      "description": "",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://merchant-api-dev-v2.onepay.lk"
+      }
+    },
+    {
+      "name": "Get Transaction",
+      "description": "",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "https://merchant-api-dev-v2.onepay.lk"
+      }
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/ipg/gateway/request-transaction/?hash={hash}": {
+      "post": {
+        "tags": [
+          "Generate Transaction"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "makeTransaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "hash",
+            "description": "Hash key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Pet object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Transaction"
+            }
+          }
+        ],
+        "responses": {
+          "1000": {
+            "description": "success"
+          },
+          "1001": {
+            "description": "Unauthorized request"
+          },
+          "1002": {
+            "description": "Invalid user credentials"
+          },
+          "1003": {
+            "description": "Please provide required data"
+          },
+          "1004": {
+            "description": "Transaction reference number length must be 10 - 20"
+          },
+          "1005": {
+            "description": "Internal server error"
+          },
+          "1006": {
+            "description": "Merchant in invalid state"
+          },
+          "1007": {
+            "description": "Merchant not subscribe for this service"
+          },
+          "1014": {
+            "description": "Invalid app configurations"
+          },
+          "1015": {
+            "description": "Duplicate transaction reference"
+          },
+          "1016": {
+            "description": "Invalid phone number"
+          },
+          "1017": {
+            "description": "Invalid email address"
+          },
+          "1018": {
+            "description": "Invalid URL"
+          },
+          "1019": {
+            "description": "Transactions do not exist."
+          }
+        }
+      }
+    },
+    "/ipg/gateway/request-transaction-status/?hash={hash}": {
+      "get": {
+        "tags": [
+          "Get Transaction"
+        ],
+        "summary": "",
+        "description": "Returns a map of status codes to quantities",
+        "operationId": "getInventory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "hash",
+            "description": "Hash key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Pet object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "1000": {
+            "description": "success"
+          },
+          "1001": {
+            "description": "Unauthorized request"
+          },
+          "1002": {
+            "description": "Invalid user credentials"
+          },
+          "1003": {
+            "description": "Please provide required data"
+          },
+          "1004": {
+            "description": "Transaction reference number length must be 10 - 20"
+          },
+          "1005": {
+            "description": "Internal server error"
+          },
+          "1006": {
+            "description": "Merchant in invalid state"
+          },
+          "1007": {
+            "description": "Merchant not subscribe for this service"
+          },
+          "1014": {
+            "description": "Invalid app configurations"
+          },
+          "1015": {
+            "description": "Duplicate transaction reference"
+          },
+          "1016": {
+            "description": "Invalid phone number"
+          },
+          "1017": {
+            "description": "Invalid email address"
+          },
+          "1018": {
+            "description": "Invalid URL"
+          },
+          "1019": {
+            "description": "Transactions do not exist."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "Authorization": []
+    }
+  ],
+  "definitions": {
+    "Transaction": {
+      "type": "object",
+      "required": [
+        "amount",
+        "photoUrls"
+      ],
+      "properties": {
+        "amount": {
+          "type": "float",
+          "example": 100.23
+        },
+        "app_id": {
+          "type": "string",
+          "example": "0301de083fa28a45f988"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Merchant Transaction ID NOTE- length must be within 10 - 20 characters",
+          "example": "45454545454995HH"
+        },
+        "customer_first_name": {
+          "type": "string",
+          "example": "Amila"
+        },
+        "customer_last_name": {
+          "type": "string",
+          "example": "Fernando"
+        },
+        "customer_phone_number": {
+          "type": "string",
+          "example": "+94777123456"
+        },
+        "customer_email": {
+          "type": "string",
+          "example": " test@mail.lk"
+        },
+        "transaction_redirect_url": {
+          "type": "string",
+          "example": "https://www.onepay.lk/"
+        }
+      }
+    },
+    "GetTransaction": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "example": "0301de083fa28a45f988"
+        },
+        "onepay_transaction_id": {
+          "type": "string",
+          "example": "YZL21187A866253D29B66"
+        }
+      }
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/spe47/ipg/1.0.0"
+}
